@@ -1,14 +1,11 @@
-import Bottombar from '@/components/shared/Bottombar'
-import LeftSidebar from '@/components/shared/LeftSidebar'
-import Topbar from '@/components/shared/Topbar'
+
 import Loader  from '@/components/shared/Loader'
-import { Outlet } from 'react-router-dom'
 import { useGetRecentPosts } from '@/lib/react-query/queriesAndMutations'
 import { Models } from 'appwrite'
 import PostCard from '@/components/shared/PostCard'
 
 const Home = () => {
-  const { data: posts, isLoading: isPostLoading, isError: isPostError } = useGetRecentPosts()
+  const { data: posts, isLoading: isPostLoading } = useGetRecentPosts()
   return (
     <div className='flex flex-1'>
       <div className="home-container">

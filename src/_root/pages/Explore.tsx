@@ -4,29 +4,13 @@ import Loader from '@/components/shared/Loader';
 import { Input } from '@/components/ui/input'
 import useDebounce from '@/hooks/useDebounce';
 import { useGetPosts, useSearchPosts } from '@/lib/react-query/queriesAndMutations';
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import SearchResults from '@/components/shared/SearchResults';
 
-// export type SearchResultProps = {
-//   isSearchFetching: boolean;
-//   searchedPosts: any;
-// };
-
-// const SearchResults = ({ isSearchFetching, searchedPosts }: SearchResultProps) => {
-//   if (isSearchFetching) {
-//     return <Loader />;
-//   } else if (searchedPosts && searchedPosts.documents.length > 0) {
-//     return <GridPostList posts={searchedPosts.documents} />;
-//   } else {
-//     return (
-//       <p className="text-light-4 mt-10 text-center w-full">No results found</p>
-//     );
-//   }
-// };
 
 const Explore = () => {
-  const { ref, inView } = useInView();
-  const { data: posts, fetchNextPage, hasNextPage } = useGetPosts();
+  const {  inView } = useInView();
+  const { data: posts, fetchNextPage } = useGetPosts();
 
   const [searchValue, setSearchValue] = useState("");
   const debouncedSearch = useDebounce(searchValue, 500);
@@ -49,7 +33,7 @@ const Explore = () => {
   console.log(posts)
   const showRes = searchValue !== "";
   const showPosts = !showRes && 
-    posts.pages.every((item) => item.documents.length === 0);
+    posts.pages.every((item) => item?.documents.length === 0);
   return (
     <div className='explore-container'>
       <div className="explore-inner_container">
@@ -78,7 +62,7 @@ const Explore = () => {
           <p className="text-light-4 mt-10 text-center w-full">End of posts</p>
         ) : (
           posts.pages.map((item, index) => (
-            <GridPostList key={`page-${index}`} posts={item.documents} />
+            <GridPostList key={`page-${index}`} posts={item?.documents} />
           ))
         )}
       </div>

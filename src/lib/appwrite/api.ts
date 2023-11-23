@@ -16,6 +16,7 @@ export const saveUserToDB = async (user: {
       ID.unique(),
       user,
     )
+    return newUser;
   }catch(e){
     console.log(e)
   }
@@ -42,7 +43,7 @@ export const createAccount = async(user: INewUser) => {
       imageUrl: avatarUrl
     });
 
-    return newUser;
+    return newUAcc;
   }catch(e){
     console.log(e);
     return e;
@@ -349,7 +350,7 @@ export async function getUserPosts(userId?: string) {
 }
 
 export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
-  const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(9)];
+  const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(10)];
 
   if (pageParam) {
     queries.push(Query.cursorAfter(pageParam.toString()));

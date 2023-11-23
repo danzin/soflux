@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 
 const EditPost = () => {
   const { id } = useParams()
-  const { data: post, isLoading} = useGetPostById(id)
+  const { data: post, isLoading} = useGetPostById(id!)
   if(isLoading) return <Loader/>
 
   return (
