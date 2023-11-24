@@ -1,3 +1,25 @@
+# Snapgram - an instagram-like social media app
+
+## Built with React, TypeScript, TailwindCSS, TanStack(formerly react-query).
+
+Currently running with Appwrite backend and hosted with Vercel on https://soflux.vercel.app/
+
+Functionality supports the following: 
+-Registration
+-Sign in
+-Create post
+-Update post
+-Remove post
+-Like post
+-Add post to favourites
+-Explore page with popular/recent posts
+-Search function
+
+TODO:
+-User Profile page
+-Creators page
+-Tests
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
