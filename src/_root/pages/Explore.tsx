@@ -29,7 +29,6 @@ const Explore = () => {
       </div>
     );
 
-  console.log(posts)
   const showRes = searchValue !== "";
   const showPosts = !showRes && 
     posts.pages.every((item) => item?.documents.length === 0);
