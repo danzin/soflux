@@ -28,7 +28,7 @@ const Home = () => {
         </div>
       </div>
 
-      {isUserLoading ? (<div className='hidden xl:flex min-w-[100px]'><Loader /></div>) : <RightSideBar users={users} />}
+      {isUserLoading ? (<div className='hidden xl:flex w-465 min-w-[100px]'><Loader /></div>) : <RightSideBar users={users} />}
 
     </div>
   )

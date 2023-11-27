@@ -52,6 +52,10 @@
     @apply text-[18px] font-medium leading-[140%];
   }
 
+  .body-medium-bold {
+    @apply text-[16px] font-semibold leading-[140%];
+  }
+
   .small-semibold {
     @apply text-[14px] font-semibold leading-[140%] tracking-tighter;
   }
@@ -228,19 +232,14 @@
 
   /* Right Sidebar */
   .rightsidebar {
-    @apply hidden xl:flex px-6 py-10 flex-col justify-between order-3 min-w-[100px] h-screen bg-dark-2;
+    @apply hidden xl:flex px-6 py-10 flex-col justify-between order-3 w-1/4 min-w-[100px] h-screen bg-dark-2;
   }
 
   /* Post Card */
   .post-card {
     @apply bg-dark-2 rounded-3xl border border-dark-4 p-5 lg:p-7 w-full max-w-screen-sm;
   }
-
-  /* User Card */ 
-  .user-card{
-    @apply bg-dark-2 rounded-3xl border border-dark-4 p-2 lg:p-7 w-full ;
-  }
-
+  
   .post-card_img {
     @apply h-64 xs:h-[400px] lg:h-[450px] w-full rounded-[24px] object-cover mb-5;
   }
@@ -254,6 +253,7 @@
   .user-card {
     @apply flex-center flex-col gap-4 border border-dark-4 rounded-[20px] px-5 py-8;
   }
+  
 }
 
 @layer components {
