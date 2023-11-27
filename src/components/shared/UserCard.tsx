@@ -1,4 +1,3 @@
-import React from 'react'
 import { Button } from '../ui/button'
 import { Models } from 'appwrite';
 import { Link } from 'react-router-dom';

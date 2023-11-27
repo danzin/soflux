@@ -8,8 +8,7 @@ import RightSideBar from '@/components/shared/RightSideBar'
 const Home = () => {
   const {
     data: users,
-    isLoading: isUserLoading,
-    isError: isErrorCreators,
+    isLoading: isUserLoading
   } = useGetUsers();
   const { data: posts, isLoading: isPostLoading } = useGetRecentPosts()
   return (
