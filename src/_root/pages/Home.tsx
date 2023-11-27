@@ -1,10 +1,16 @@
 
 import Loader  from '@/components/shared/Loader'
-import { useGetRecentPosts } from '@/lib/react-query/queriesAndMutations'
+import { useGetRecentPosts, useGetUsers } from '@/lib/react-query/queriesAndMutations'
 import { Models } from 'appwrite'
 import PostCard from '@/components/shared/PostCard'
+import RightSideBar from '@/components/shared/RightSideBar'
 
 const Home = () => {
+  const {
+    data: users,
+    isLoading: isUserLoading,
+    isError: isErrorCreators,
+  } = useGetUsers();
   const { data: posts, isLoading: isPostLoading } = useGetRecentPosts()
   return (
     <div className='flex flex-1'>
@@ -22,6 +28,9 @@ const Home = () => {
             )}
         </div>
       </div>
+
+      {isUserLoading ? (<div className='hidden xl:flex min-w-[100px]'><Loader /></div>) : <RightSideBar users={users} />}
+
     </div>
   )
 }

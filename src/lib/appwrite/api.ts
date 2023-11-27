@@ -2,13 +2,13 @@ import { ID, Query } from 'appwrite'
 import { INewPost, INewUser, IUpdatePost, IUpdateUser } from "@/types";
 import { account, appwriteConfig, avatars, databases, storage } from './config';
 
-export const saveUserToDB = async (user: {
+export async function saveUserToDB(user: {
   accountId: string;
   email: string;
   name: string;
   imageUrl: URL;
   username?: string;
-}) => {
+}) {
   try{
     const newUser = await databases.createDocument(
       appwriteConfig.databaseId,
@@ -23,7 +23,7 @@ export const saveUserToDB = async (user: {
 
 }
 
-export const createAccount = async(user: INewUser) => {
+export async function createAccount(user: INewUser) {
   try{
     const newUser = await account.create(
       ID.unique(),
@@ -50,7 +50,7 @@ export const createAccount = async(user: INewUser) => {
   }
 }
 
-export const signInAccount = async (user: {email: string; password: string}) => {
+export async function signInAccount(user: {email: string; password: string}){
   try{
     const session = await account.createEmailSession(user.email, user.password);
     return session;
@@ -99,7 +99,7 @@ export async function signOutAccount(){
   }
 }
 
-export const createPost = async (post: INewPost) => {
+export async function createPost(post: INewPost){
   try{
     //upload image
     const uploadedFile = await uploadFile(post.file[0])
@@ -267,7 +267,7 @@ export async function getPostById(postId?: string) {
 }
 
 
-export const updatePost = async (post: IUpdatePost) => {
+export async function updatePost(post: IUpdatePost){
   const hasFile = post.file.length > 0;
   try{
     let image = {
@@ -331,7 +331,7 @@ export async function deletePost(postId: string, imageId: string){
 
 }
 
-export async function getUserPosts(userId?: string) {
+export async function getUserPosts(userId?: string){
   if (!userId) return;
 
   try {
@@ -349,7 +349,7 @@ export async function getUserPosts(userId?: string) {
   }
 }
 
-export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
+export async function getInfinitePosts({ pageParam }: { pageParam: number }){
   const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(6)];
 
   if (pageParam) {
@@ -402,8 +402,11 @@ export async function getUserById(id: string) {
   }
 }
 
+
 export async function updateUser(user: IUpdateUser){
+  //Check for file
   const fileUpdate = user.file.length > 0;
+
   try {
     let image = {
       imageUrl: user.imageUrl,
@@ -420,7 +423,7 @@ export async function updateUser(user: IUpdateUser){
         throw Error;
       }
 
-      image = {...image, imageUrl: fileUrl, imageId: file.$id}
+      image = { ...image, imageUrl: fileUrl, imageId: file.$id }
     }
 
     const updatedUser = await databases.updateDocument(
@@ -442,7 +445,7 @@ export async function updateUser(user: IUpdateUser){
       throw Error;
     }
 
-    //delete old file after update
+    //Delete old image after update
     if (user.imageId && fileUpdate) {
       await deleteFile(user.imageId);
     }
@@ -452,4 +455,18 @@ export async function updateUser(user: IUpdateUser){
   }
 
 
+}
+
+export async function getUsers() {
+  try {
+    const users = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.usersCollectionId,
+      [Query.orderDesc("$createdAt"), Query.limit(10)],
+    );
+    if(!users) throw Error;
+    return users;
+  } catch (error) {
+    console.log(error);
+  }
 }
