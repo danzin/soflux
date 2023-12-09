@@ -7,20 +7,23 @@ import { QueryProvider } from '../../lib/react-query/queryProvider';
 import { cleanup } from '@testing-library/react'
 import { afterEach } from 'vitest'
 
-//interface for Wrapper's props
+//Interface for Wrapper
 interface WrapperProps {
   children?: React.ReactNode;
 }
+
 afterEach(() => {
   cleanup()
 })
 
 function customRender(ui: React.ReactElement, options = {}) {
-  //custom Wrapper
+  //Custom Wrapper
   const Wrapper: React.FC<WrapperProps> = ({ children }) => (
     <BrowserRouter>
       <QueryProvider>
-         <AuthProvider>{children}</AuthProvider>
+        <AuthProvider>
+          {children}
+        </AuthProvider>
        </QueryProvider>
      </BrowserRouter>
    );

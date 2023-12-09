@@ -58,6 +58,7 @@ export async function signInAccount(user: {email: string; password: string}){
     console.log(e);
   }
 } 
+
 export async function getAccount() {
   try {
     const currentAccount = await account.get();
