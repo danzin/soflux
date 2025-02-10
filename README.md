@@ -25,8 +25,6 @@ Functionality supports the following:
 - Creators page
 - Infinite scroll
 
-![firefox_YYGLi99hTw](https://github.com/danzin/soflux/assets/8279984/4f1f4fab-23ad-4a21-82bf-253c2a20b041)
-
 ![firefox_vwS9bVUpQw](https://github.com/danzin/soflux/assets/8279984/0c1cff66-3813-4d5a-abaa-58572cc7ae45)
 
 ![firefox_EUshHFNTye](https://github.com/danzin/soflux/assets/8279984/5e767317-e32a-4103-b7a4-452ecedd0665)
