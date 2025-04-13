@@ -13,15 +13,14 @@ const App = () => {
     <main className="flex h-screen">
       <Routes> 
         {/*public routes */}
-        <Route index element={<Home/>}/>
         <Route element={<AuthLayout/>}>
-
           <Route path='/sign-in/' element={<SignInForm/>}/>
           <Route path='/sign-up/' element={<SignUpForm/>}/>
         </Route>
 
         {/*private routes */}
         <Route element={<RootLayout/>}>
+          <Route index element={<Home/>}/>
           <Route path='/explore/' element={<Explore/>}/>
           <Route path='/saved/' element={<Saved/>}/>
           <Route path='/all-users/' element={<AllUsers/>}/>
