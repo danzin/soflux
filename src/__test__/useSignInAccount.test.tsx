@@ -1,4 +1,4 @@
-import { fireEvent, render, renderHook } from './utils/testUtils'
+import { renderHook } from './utils/testUtils'
 import { useSignInAccount } from '@/lib/react-query/queriesAndMutations';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act } from 'react-dom/test-utils';
